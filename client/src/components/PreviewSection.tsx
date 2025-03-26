@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { FaCube, FaGem, FaFire, FaMountain } from 'react-icons/fa';
+
+import { useState, useEffect } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 interface ImageItem {
   src: string;
@@ -10,6 +11,7 @@ interface ImageItem {
 
 export default function PreviewSection() {
   const [activeTab, setActiveTab] = useState('gameplay');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const gameplayImages: ImageItem[] = [
     {
@@ -52,8 +54,7 @@ export default function PreviewSection() {
       description: "Each ore type has a unique outline pattern"
     }
   ];
-  
-  // Get active images based on selected tab
+
   const getActiveImages = () => {
     switch (activeTab) {
       case 'gameplay':
@@ -64,10 +65,26 @@ export default function PreviewSection() {
         return gameplayImages;
     }
   };
-  
+
+  const nextImage = () => {
+    const images = getActiveImages();
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    const images = getActiveImages();
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [activeTab]);
+
+  const activeImages = getActiveImages();
+  const currentImage = activeImages[currentImageIndex];
+
   return (
     <section id="preview" className="py-24 futuristic-section relative">
-      {/* Background effects */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full" 
           style={{
@@ -87,69 +104,70 @@ export default function PreviewSection() {
             See how Visible Ores makes mining more efficient and enjoyable with enhanced ore visibility
           </p>
         </div>
-        
-        {/* Gallery Tabs */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex cosmic-card overflow-hidden">
-            <button 
-              className={`px-6 py-3 font-semibold text-white flex items-center gap-2 transition-colors ${
-                activeTab === 'gameplay' 
-                  ? 'bg-gradient-to-r from-pink-600/40 to-purple-600/40 text-white' 
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
-              }`}
-              onClick={() => setActiveTab('gameplay')}
-            >
-              <FaCube className="text-pink-400" /> Gameplay
-            </button>
-            <button 
-              className={`px-6 py-3 font-semibold text-white flex items-center gap-2 transition-colors ${
-                activeTab === 'nether' 
-                  ? 'bg-gradient-to-r from-pink-600/40 to-purple-600/40 text-white' 
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
-              }`}
-              onClick={() => setActiveTab('nether')}
-            >
-              <FaFire className="text-pink-400" /> Nether
-            </button>
-          </div>
-        </div>
-        
-        {/* Gallery Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {getActiveImages().map((image, index) => (
-            <div key={index} className="group relative overflow-hidden cosmic-card transform transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-pink-500/20">
-              {/* Decorative elements */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 to-purple-600 opacity-0 group-hover:opacity-50 transition-opacity duration-300 blur-sm rounded-lg -z-10"></div>
-              
-              <div className="relative overflow-hidden rounded-t-lg">
-                <img 
-                  src={image.src} 
-                  alt={image.alt} 
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
-              
-              <div className="p-4 bg-black/50 backdrop-blur-sm border-t border-pink-500/20">
-                <h4 className="text-lg font-bold text-white mb-1 neon-text">{image.title}</h4>
-                <p className="text-gray-300">{image.description}</p>
-              </div>
-              
-              <div className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-black/70 text-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <FaGem />
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        {/* CTA Button */}
-        <div className="text-center mt-16">
-          <a 
-            href="#download" 
-            className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-medium py-3 px-8 rounded-md transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/20"
+
+        <div className="flex justify-center gap-4 mb-8">
+          <button 
+            onClick={() => setActiveTab('gameplay')}
+            className={`px-6 py-2 rounded-full transition-all ${
+              activeTab === 'gameplay' 
+                ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white' 
+                : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+            }`}
           >
-            <FaCube className="text-xl" /> Download and Try It Now
-          </a>
+            Gameplay
+          </button>
+          <button 
+            onClick={() => setActiveTab('nether')}
+            className={`px-6 py-2 rounded-full transition-all ${
+              activeTab === 'nether' 
+                ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white' 
+                : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+            }`}
+          >
+            Nether
+          </button>
+        </div>
+
+        <div className="max-w-4xl mx-auto relative">
+          <div className="relative aspect-[16/9] rounded-lg overflow-hidden shadow-2xl">
+            <img 
+              src={currentImage.src}
+              alt={currentImage.alt}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+              <h3 className="text-2xl font-bold mb-2">{currentImage.title}</h3>
+              <p className="text-gray-300">{currentImage.description}</p>
+            </div>
+          </div>
+          
+          <button 
+            onClick={prevImage}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all"
+          >
+            <FaChevronLeft size={24} />
+          </button>
+          
+          <button 
+            onClick={nextImage}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all"
+          >
+            <FaChevronRight size={24} />
+          </button>
+
+          <div className="flex justify-center mt-4 gap-2">
+            {activeImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === currentImageIndex
+                    ? 'bg-gradient-to-r from-pink-500 to-purple-600'
+                    : 'bg-gray-600 hover:bg-gray-500'
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
