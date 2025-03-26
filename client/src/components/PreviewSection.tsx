@@ -14,7 +14,7 @@ export default function PreviewSection() {
 
   const gameplayImages: ImageItem[] = [
     {
-      src: "./attached_assets/Screenshot_20250325_225251_Minecraft.jpg",
+      src: "/images/Screenshot_20250325_225251_Minecraft.jpg",
       alt: "Visible Ores in a cave",
       title: "Cave Exploration",
       description: "Ores are clearly visible with bright outlines in dark caves"
