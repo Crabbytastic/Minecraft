@@ -1,37 +1,83 @@
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import FeaturesSection from "@/components/FeaturesSection";
-import PreviewSection from "@/components/PreviewSection";
-import DownloadSection from "@/components/DownloadSection";
-import DiscordSection from "@/components/DiscordSection";
 import Footer from "@/components/Footer";
+import { FaDownload } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
+import { trackDownload } from "@/utils/downloadCounter";
+
+// Define TypeScript interface for texture pack data
+interface TexturePack {
+  id: number;
+  name: string;
+  version: string;
+  compatibility: string;
+  releaseDate: string;
+  fileSize: string;
+  downloadCount: number;
+  filePath: string;
+}
 
 export default function Home() {
   useEffect(() => {
-    // Add background pattern to body
-    document.body.style.backgroundColor = "#1a1a1a";
-    document.body.style.backgroundImage = "url('https://i.imgur.com/XJeKcOA.png')";
-    document.body.style.backgroundRepeat = "repeat";
-    document.body.style.backgroundSize = "64px";
+    // Set black background
+    document.body.style.backgroundColor = "#000000";
+    document.body.style.backgroundImage = "none";
     
     return () => {
       // Clean up
       document.body.style.backgroundColor = "";
       document.body.style.backgroundImage = "";
-      document.body.style.backgroundRepeat = "";
-      document.body.style.backgroundSize = "";
     };
   }, []);
 
+  // Fetch texture pack data
+  const { data: texturePacks } = useQuery<TexturePack[]>({
+    queryKey: ['/api/texture-packs'],
+  });
+
+  const texturePack = texturePacks?.[0];
+
+  const handleDownload = async () => {
+    if (texturePack) {
+      await trackDownload(texturePack.id);
+      
+      // Create a download link
+      const link = document.createElement('a');
+      link.href = texturePack.filePath;
+      link.download = texturePack.name;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   return (
-    <div className="font-sans text-gray-100 min-h-screen">
+    <div className="font-sans text-gray-100 min-h-screen bg-black">
       <Navbar />
-      <HeroSection />
-      <FeaturesSection />
-      <PreviewSection />
-      <DownloadSection />
-      <DiscordSection />
+      
+      {/* Centered download button */}
+      <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="text-center mb-8">
+          <h1 className="text-6xl md:text-8xl mb-6 red-text font-bold">Visible Ores</h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-12">
+            Minecraft Bedrock Texture Pack
+          </p>
+        </div>
+        
+        <button 
+          onClick={handleDownload}
+          className="red-button text-3xl px-12 py-6 flex items-center gap-3 animate-pulse-red"
+        >
+          <FaDownload size={30} /> Download Now
+        </button>
+        
+        {texturePack && (
+          <div className="mt-4 text-gray-400">
+            Version {texturePack.version} | {texturePack.downloadCount} downloads
+          </div>
+        )}
+      </div>
+      
       <Footer />
     </div>
   );
