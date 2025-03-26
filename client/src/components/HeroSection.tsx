@@ -49,7 +49,7 @@ export default function HeroSection() {
             <div className="relative w-64 h-64 md:w-80 md:h-80 animate-float">
               <div className="absolute -inset-2 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg blur-lg opacity-50 animate-pulse"></div>
               <img
-                src="/src/assets/galactic-logo.jpg"
+                src="/attached_assets/Screenshot_20250325_224106_File Manager +.jpg"
                 alt="Visible Ores Logo"
                 className="w-full h-full object-cover rounded-lg relative z-10"
               />
