@@ -80,7 +80,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Set appropriate headers for download
-      res.setHeader('Content-Disposition', `attachment; filename="Visible Ores - ${pack.version}.mcpack"`);
+      res.setHeader('Content-Disposition', `attachment; filename="Visible Ores.mcpack"`);
       res.setHeader('Content-Type', 'application/octet-stream');
       
       // Stream the file to the client
