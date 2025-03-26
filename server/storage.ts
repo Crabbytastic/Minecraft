@@ -40,7 +40,7 @@ export class MemStorage implements IStorage {
         compatibility: "Bedrock 1.20.x",
         releaseDate: "March 25, 2025",
         fileSize: "4.3 MB",
-        filePath: "/attached_assets/Visible Ores.mcpack"
+        filePath: "/api/texture-packs/1/download"
       },
       {
         name: "Visible Ores Texture Pack",
@@ -48,7 +48,7 @@ export class MemStorage implements IStorage {
         compatibility: "Bedrock 1.19.x",
         releaseDate: "January 15, 2025",
         fileSize: "4.1 MB",
-        filePath: "/attached_assets/Visible Ores.mcpack"
+        filePath: "/api/texture-packs/2/download"
       },
       {
         name: "Visible Ores Texture Pack",
@@ -56,7 +56,7 @@ export class MemStorage implements IStorage {
         compatibility: "Bedrock 1.18.x",
         releaseDate: "November 3, 2024",
         fileSize: "3.9 MB",
-        filePath: "/attached_assets/Visible Ores.mcpack"
+        filePath: "/api/texture-packs/3/download"
       }
     ];
 

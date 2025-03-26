@@ -37,17 +37,13 @@ export default function Home() {
 
   const texturePack = texturePacks?.[0];
 
-  const handleDownload = async () => {
+  const handleDownload = () => {
     if (texturePack) {
-      await trackDownload(texturePack.id);
+      // Track the download and directly navigate to the download URL
+      trackDownload(texturePack.id);
       
-      // Create a download link
-      const link = document.createElement('a');
-      link.href = texturePack.filePath;
-      link.download = "Visible Ores.mcpack"; // Fixed filename without version
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Directly navigate to the download URL to trigger the download
+      window.location.href = texturePack.filePath;
     }
   };
 

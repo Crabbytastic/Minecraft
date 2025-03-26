@@ -71,7 +71,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Increment download count
       await storage.incrementDownloadCount(id);
 
-      // Use the actual texture pack file
+      // Use the actual texture pack file - use the user-provided file exactly as uploaded
       const texturePath = path.join(__dirname, '..', 'attached_assets', 'Visible Ores.mcpack');
       
       // Check if the file exists
