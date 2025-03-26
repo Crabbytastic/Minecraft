@@ -10,21 +10,20 @@
   }
 
   :root {
-    --galactic-gradient: linear-gradient(135deg, rgba(147, 51, 234, 0.8) 0%, rgba(236, 72, 153, 0.8) 100%);
-    --cosmic-shadow: 0 0 15px rgba(236, 72, 153, 0.5);
-    --neon-glow: 0 0 8px rgba(236, 72, 153, 0.8);
+    --red-glow: 0 0 10px rgba(255, 0, 0, 0.5);
+    --red-border: rgba(255, 0, 0, 0.7);
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
-    background: radial-gradient(circle at center, #1a0033 0%, #0a0015 100%);
-    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='smallGrid' width='8' height='8' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 8 0 L 0 0 0 8' fill='none' stroke='rgba(255, 255, 255, 0.05)' stroke-width='0.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23smallGrid)'/%3E%3C/svg%3E");
-    background-attachment: fixed;
+    @apply font-sans antialiased;
+    background-color: #000000;
+    color: #ffffff;
   }
 
   h1, h2, h3, h4 {
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 0.05em;
+    color: #ff0000;
   }
 
   p, span, div, button {
@@ -33,90 +32,51 @@
 }
 
 @layer components {
-  .cosmic-card {
-    @apply relative overflow-hidden rounded-lg;
-    background: rgba(10, 6, 20, 0.6);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(236, 72, 153, 0.3);
-    box-shadow: var(--cosmic-shadow);
+  .panel {
+    @apply relative overflow-hidden rounded-md;
+    background-color: #111111;
+    border: 2px solid var(--red-border);
+    box-shadow: var(--red-glow);
   }
 
-  .neon-border {
-    @apply relative;
-    border: 1px solid rgba(236, 72, 153, 0.6);
-    box-shadow: var(--neon-glow);
+  .red-border {
+    @apply relative rounded-md;
+    border: 2px solid var(--red-border);
+    box-shadow: var(--red-glow);
   }
 
-  .nebula-bg {
-    background: var(--galactic-gradient);
-  }
-
-  .star-field {
-    @apply relative;
-  }
-  
-  .star-field:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: radial-gradient(white, rgba(255, 255, 255, 0) 2px);
-    background-size: 50px 50px;
-    opacity: 0.1;
-  }
-  
-  .futuristic-section {
+  .section {
     @apply relative overflow-hidden py-16;
-    background: rgba(10, 6, 20, 0.6);
-    backdrop-filter: blur(5px);
-    border-top: 1px solid rgba(236, 72, 153, 0.2);
-    border-bottom: 1px solid rgba(236, 72, 153, 0.2);
+    background-color: #000000;
+    border-top: 1px solid rgba(255, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+  }
+
+  .red-button {
+    @apply relative py-2 px-4 bg-black text-white font-medium rounded-md;
+    border: 2px solid var(--red-border);
+    transition: all 0.2s ease;
+  }
+
+  .red-button:hover {
+    @apply bg-red-900/30;
+    box-shadow: var(--red-glow);
   }
 
   /* Animation utilities */
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
-    100% { transform: translateY(0px); }
+  @keyframes pulse-red {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
   }
 
-  @keyframes pulse-glow {
-    0% { opacity: 0.5; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0.5; }
+  .animate-pulse-red {
+    animation: pulse-red 3s ease-in-out infinite;
   }
 
-  @keyframes rotate-slow {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 3s ease-in-out infinite;
-  }
-
-  .animate-rotate-slow {
-    animation: rotate-slow 20s linear infinite;
-  }
-
-  /* Neon text effects */
-  .neon-text {
-    text-shadow: 
-      0 0 5px rgba(236, 72, 153, 0.5),
-      0 0 10px rgba(236, 72, 153, 0.3),
-      0 0 15px rgba(236, 72, 153, 0.2);
-  }
-
-  .neon-text-purple {
-    text-shadow: 
-      0 0 5px rgba(147, 51, 234, 0.5),
-      0 0 10px rgba(147, 51, 234, 0.3),
-      0 0 15px rgba(147, 51, 234, 0.2);
+  /* Red text effect */
+  .red-text {
+    color: #ff0000;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
   }
 }
