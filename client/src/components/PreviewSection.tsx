@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -12,43 +11,43 @@ interface ImageItem {
 export default function PreviewSection() {
   const [activeTab, setActiveTab] = useState('gameplay');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
+
   const gameplayImages: ImageItem[] = [
     {
-      src: "attached_assets/Screenshot_20250325_225251_Minecraft.jpg",
+      src: "/attached_assets/Screenshot_20250325_225251_Minecraft.jpg",
       alt: "Visible Ores in a cave",
       title: "Cave Exploration",
       description: "Ores are clearly visible with bright outlines in dark caves"
     },
     {
-      src: "attached_assets/Screenshot_20250325_225433_Minecraft.jpg",
+      src: "/attached_assets/Screenshot_20250325_225433_Minecraft.jpg",
       alt: "Diamond ore with visible outline",
       title: "Diamond Mining",
       description: "Diamond ores stand out with bright outlines"
     },
     {
-      src: "attached_assets/Screenshot_20250325_225539_Minecraft.jpg",
+      src: "/attached_assets/Screenshot_20250325_225539_Minecraft.jpg",
       alt: "Various ores in cave",
       title: "Multiple Ores",
       description: "All ore types have unique, clear outlines for easy identification"
     }
   ];
-  
+
   const netherImages: ImageItem[] = [
     {
-      src: "attached_assets/Screenshot_20250325_225714_Minecraft.jpg",
+      src: "/attached_assets/Screenshot_20250325_225714_Minecraft.jpg",
       alt: "Ancient debris and nether gold",
       title: "Nether Mining",
       description: "Ancient debris and other nether ores are enhanced with outlines"
     },
     {
-      src: "attached_assets/Screenshot_20250325_225251_Minecraft.jpg",
+      src: "/attached_assets/Screenshot_20250325_225251_Minecraft.jpg",
       alt: "Deep cave mining",
       title: "Deep Mining",
       description: "Spot rare ores even in the darkest environments"
     },
     {
-      src: "attached_assets/Screenshot_20250325_225539_Minecraft.jpg",
+      src: "/attached_assets/Screenshot_20250325_225539_Minecraft.jpg",
       alt: "Various ore textures",
       title: "Texture Details",
       description: "Each ore type has a unique outline pattern"
@@ -92,7 +91,7 @@ export default function PreviewSection() {
           }}
         />
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-3 relative inline-block neon-text">
@@ -140,14 +139,14 @@ export default function PreviewSection() {
               <p className="text-gray-300">{currentImage.description}</p>
             </div>
           </div>
-          
+
           <button 
             onClick={prevImage}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all"
           >
             <FaChevronLeft size={24} />
           </button>
-          
+
           <button 
             onClick={nextImage}
             className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all"
