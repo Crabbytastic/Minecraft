@@ -70,6 +70,9 @@ export default function Home() {
         <div className="mt-4 text-gray-400">
           300+ downloads
         </div>
+        <div className="mt-2 text-gray-500 text-sm">
+          Please press only once - download will start automatically
+        </div>
       </div>
       
       <Footer />

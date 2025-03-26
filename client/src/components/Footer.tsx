@@ -24,13 +24,7 @@ export default function Footer() {
           <p className="text-gray-500 text-sm">
             Visible Ores © {new Date().getFullYear()}. Not affiliated with Mojang Studios. Minecraft is a trademark of Mojang Studios.
           </p>
-          <div className="mt-4 flex justify-center space-x-4 text-sm">
-            <a href="#" className="text-gray-400 hover:text-red-600 transition-colors">Privacy Policy</a>
-            <span className="text-gray-700">|</span>
-            <a href="#" className="text-gray-400 hover:text-red-600 transition-colors">Terms of Use</a>
-            <span className="text-gray-700">|</span>
-            <a href="#" className="text-gray-400 hover:text-red-600 transition-colors">Contact</a>
-          </div>
+          {/* Footer links removed as requested */}
         </div>
       </div>
     </footer>

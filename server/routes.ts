@@ -71,8 +71,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Increment download count
       await storage.incrementDownloadCount(id);
 
-      // Use the actual texture pack file - use the user-provided file exactly as uploaded
-      const texturePath = path.join(__dirname, '..', 'attached_assets', 'Visible Ores.mcpack');
+      // Use the actual texture pack file - check in multiple locations
+      let texturePath = path.join(__dirname, '..', 'attached_assets', 'Visible Ores.mcpack');
+      
+      // If not found in attached_assets, try public directory (for Vercel deployment)
+      if (!fs.existsSync(texturePath)) {
+        texturePath = path.join(__dirname, '..', 'public', 'Visible Ores.mcpack');
+      }
       
       // Check if the file exists
       if (!fs.existsSync(texturePath)) {
