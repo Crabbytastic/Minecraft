@@ -105,7 +105,8 @@ export class MemStorage implements IStorage {
 
   async createTexturePack(insertPack: InsertTexturePack): Promise<TexturePack> {
     const id = this.packCurrentId++;
-    const pack: TexturePack = { ...insertPack, id, downloadCount: 0 };
+    // Set initial download count to 300 for all texture packs
+    const pack: TexturePack = { ...insertPack, id, downloadCount: 300 };
     this.packs.set(id, pack);
     return pack;
   }

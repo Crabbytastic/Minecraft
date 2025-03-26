@@ -44,7 +44,7 @@ export default function Home() {
       // Create a download link
       const link = document.createElement('a');
       link.href = texturePack.filePath;
-      link.download = texturePack.name;
+      link.download = "Visible Ores.mcpack"; // Fixed filename without version
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -71,11 +71,9 @@ export default function Home() {
           <FaDownload size={30} /> Download Now
         </button>
         
-        {texturePack && (
-          <div className="mt-4 text-gray-400">
-            Version {texturePack.version} | {texturePack.downloadCount} downloads
-          </div>
-        )}
+        <div className="mt-4 text-gray-400">
+          300+ downloads
+        </div>
       </div>
       
       <Footer />
