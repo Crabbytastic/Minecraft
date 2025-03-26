@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from "react";
 
 interface ImageItem {
   src: string;
@@ -11,37 +10,26 @@ interface ImageItem {
 export default function PreviewSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const gameplayImages: ImageItem[] = [
+  const allImages: ImageItem[] = [
     {
-      src: "/preview/Screenshot_20250325_225251_Minecraft.jpg",
-      alt: "Visible Ores in a cave",
-      title: "Cave Exploration",
-      description: "Ores are clearly visible with bright outlines in dark caves"
+      src: "/preview/Screenshot_20240325_224106_Minecraft.jpg",
+      alt: "Display of all ores",
+      title: "All Ores Display",
+      description: "See all ores with their unique colored outlines"
     },
     {
-      src: "/preview/Screenshot_20250325_225433_Minecraft.jpg",
-      alt: "Diamond ore with visible outline",
+      src: "/preview/Screenshot_20240325_224239_Minecraft.jpg",
+      alt: "Nether ores",
+      title: "Nether Mining",
+      description: "Ancient debris and nether gold are clearly visible"
+    },
+    {
+      src: "/preview/Screenshot_20240325_224335_Minecraft.jpg",
+      alt: "Diamond ore outline",
       title: "Diamond Mining",
       description: "Diamond ores stand out with bright outlines"
-    },
-    {
-      src: "/preview/Screenshot_20250325_225539_Minecraft.jpg",
-      alt: "Various ores in cave",
-      title: "Multiple Ores",
-      description: "All ore types have unique, clear outlines for easy identification"
     }
   ];
-
-  const netherImages: ImageItem[] = [
-    {
-      src: "/preview/Screenshot_20250325_225714_Minecraft.jpg",
-      alt: "Ancient debris and nether gold",
-      title: "Nether Mining",
-      description: "Ancient debris and other nether ores are enhanced with outlines"
-    }
-  ];
-
-  const allImages = [...gameplayImages, ...netherImages];
 
   return (
     <section className="py-16 relative overflow-hidden">
@@ -63,7 +51,7 @@ export default function PreviewSection() {
                 key={index}
                 onClick={() => setActiveIndex(index)}
                 className={`flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden ${
-                  index === activeIndex ? 'ring-2 ring-purple-500' : ''
+                  index === activeIndex ? 'ring-2 ring-red-500' : ''
                 }`}
               >
                 <img
