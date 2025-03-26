@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background cube -->
+  <rect x="96" y="96" width="320" height="320" fill="#333333" />
+  
+  <!-- Red ore outline -->
+  <rect x="96" y="96" width="320" height="320" stroke="#FF0000" stroke-width="16" />
+  
+  <!-- Diamond ore pattern -->
+  <polygon points="256,160 296,200 256,240 216,200" fill="#00FFFF" stroke="#FF0000" stroke-width="8" />
+  <polygon points="176,256 216,296 176,336 136,296" fill="#00FFFF" stroke="#FF0000" stroke-width="8" />
+  <polygon points="336,256 376,296 336,336 296,296" fill="#00FFFF" stroke="#FF0000" stroke-width="8" />
+</svg>
