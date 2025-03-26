@@ -14,19 +14,19 @@ export default function PreviewSection() {
 
   const gameplayImages: ImageItem[] = [
     {
-      src: "/attached_assets/Screenshot_20250325_225251_Minecraft.jpg",
+      src: "/assets/Screenshot_20250325_225251_Minecraft.jpg",
       alt: "Visible Ores in a cave",
       title: "Cave Exploration",
       description: "Ores are clearly visible with bright outlines in dark caves"
     },
     {
-      src: "/attached_assets/Screenshot_20250325_225433_Minecraft.jpg",
+      src: "/assets/Screenshot_20250325_225433_Minecraft.jpg",
       alt: "Diamond ore with visible outline",
       title: "Diamond Mining",
       description: "Diamond ores stand out with bright outlines"
     },
     {
-      src: "/attached_assets/Screenshot_20250325_225539_Minecraft.jpg",
+      src: "/assets/Screenshot_20250325_225539_Minecraft.jpg",
       alt: "Various ores in cave",
       title: "Multiple Ores",
       description: "All ore types have unique, clear outlines for easy identification"
@@ -35,19 +35,19 @@ export default function PreviewSection() {
 
   const netherImages: ImageItem[] = [
     {
-      src: "/attached_assets/Screenshot_20250325_225714_Minecraft.jpg",
+      src: "/assets/Screenshot_20250325_225714_Minecraft.jpg",
       alt: "Ancient debris and nether gold",
       title: "Nether Mining",
       description: "Ancient debris and other nether ores are enhanced with outlines"
     },
     {
-      src: "/attached_assets/Screenshot_20250325_225251_Minecraft.jpg",
+      src: "/assets/Screenshot_20250325_225251_Minecraft.jpg",
       alt: "Deep cave mining",
       title: "Deep Mining",
       description: "Spot rare ores even in the darkest environments"
     },
     {
-      src: "/attached_assets/Screenshot_20250325_225539_Minecraft.jpg",
+      src: "/assets/Screenshot_20250325_225539_Minecraft.jpg",
       alt: "Various ore textures",
       title: "Texture Details",
       description: "Each ore type has a unique outline pattern"
