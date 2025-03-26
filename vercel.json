@@ -1,3 +1,4 @@
+
 {
   "version": 2,
   "builds": [
@@ -6,8 +7,12 @@
       "use": "@vercel/node"
     },
     {
-      "src": "client/dist/**",
-      "use": "@vercel/static"
+      "src": "client/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run build",
+        "outputDirectory": "dist"
+      }
     }
   ],
   "routes": [
@@ -17,12 +22,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "client/dist/$1"
+      "dest": "/client/dist/$1"
     }
-  ],
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    }
-  }
+  ]
 }
