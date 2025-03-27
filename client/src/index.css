@@ -51,6 +51,21 @@
     border-top: 1px solid rgba(255, 0, 0, 0.2);
     border-bottom: 1px solid rgba(255, 0, 0, 0.2);
   }
+  
+  .futuristic-section {
+    @apply relative overflow-hidden py-16;
+    background-color: #000000;
+    border-top: 1px solid rgba(255, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
+  }
+
+  .cosmic-card {
+    @apply relative overflow-hidden rounded-xl;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--red-border);
+    box-shadow: var(--red-glow);
+    backdrop-filter: blur(10px);
+  }
 
   .red-button {
     @apply relative py-2 px-4 bg-black text-white font-medium rounded-md;
@@ -78,5 +93,13 @@
   .red-text {
     color: #ff0000;
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  }
+  
+  .neon-text {
+    color: #ff0000;
+    text-shadow: 
+      0 0 5px rgba(255, 0, 0, 0.5),
+      0 0 10px rgba(255, 0, 0, 0.3),
+      0 0 15px rgba(255, 0, 0, 0.2);
   }
 }

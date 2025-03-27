@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { FaDownload } from "react-icons/fa";
+import PreviewSection from "@/components/PreviewSection";
+import { FaDownload, FaChevronDown } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import { trackDownload } from "@/utils/downloadCounter";
 
@@ -18,6 +19,8 @@ interface TexturePack {
 }
 
 export default function Home() {
+  const previewSectionRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     // Set black background
     document.body.style.backgroundColor = "#000000";
@@ -29,6 +32,12 @@ export default function Home() {
       document.body.style.backgroundImage = "";
     };
   }, []);
+
+  const scrollToPreview = () => {
+    if (previewSectionRef.current) {
+      previewSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Fetch texture pack data
   const { data: texturePacks } = useQuery<TexturePack[]>({
@@ -55,9 +64,18 @@ export default function Home() {
     <div className="font-sans text-gray-100 min-h-screen bg-black">
       <Navbar />
       
-      {/* Centered download button */}
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <div className="text-center mb-8">
+      {/* Hero section with download button */}
+      <div className="flex flex-col items-center justify-center min-h-screen relative">
+        {/* Background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute bottom-0 right-0 w-full h-full opacity-10"
+            style={{
+              background: 'radial-gradient(circle at center, rgba(255, 0, 0, 0.5) 0%, transparent 70%)',
+            }}
+          />
+        </div>
+        
+        <div className="text-center mb-8 relative z-10">
           <h1 className="text-6xl md:text-8xl mb-6 red-text font-bold">Visible Ores</h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-12">
             Minecraft Bedrock Texture Pack
@@ -66,17 +84,33 @@ export default function Home() {
         
         <button 
           onClick={handleDownload}
-          className="red-button text-3xl px-12 py-6 flex items-center gap-3 animate-pulse-red"
+          className="red-button text-3xl px-12 py-6 flex items-center gap-3 animate-pulse-red z-10"
         >
           <FaDownload size={30} /> Download Now
         </button>
         
-        <div className="mt-4 text-gray-400">
+        <div className="mt-4 text-gray-400 z-10">
           300+ downloads
         </div>
-        <div className="mt-2 text-gray-500 text-sm">
+        <div className="mt-2 text-gray-500 text-sm z-10">
           Please press only once - download will start automatically
         </div>
+        
+        {/* Scroll indicator */}
+        <div className="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
+          <button 
+            onClick={scrollToPreview}
+            className="text-gray-400 hover:text-red-500 transition-colors"
+            aria-label="Scroll to preview section"
+          >
+            <FaChevronDown size={24} />
+          </button>
+        </div>
+      </div>
+      
+      {/* Preview section */}
+      <div ref={previewSectionRef}>
+        <PreviewSection />
       </div>
       
       <Footer />
