@@ -27,9 +27,11 @@ export default function DownloadSection() {
     ? texturePacks.slice(1) 
     : [];
   
-  // Download mutation
+  // Download mutation for tracking downloads
   const downloadMutation = useMutation({
     mutationFn: async (id: number) => {
+      // The API now handles both incrementing the count and serving the file
+      // Simply redirect to the download endpoint
       window.location.href = `/api/texture-packs/${id}/download`;
       return id;
     }

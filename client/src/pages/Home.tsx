@@ -37,13 +37,17 @@ export default function Home() {
 
   const texturePack = texturePacks?.[0];
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     if (texturePack) {
-      // Track the download and directly navigate to the download URL
-      trackDownload(texturePack.id);
-      
-      // Directly navigate to the download URL to trigger the download
-      window.location.href = texturePack.filePath;
+      try {
+        // Track the download
+        await trackDownload(texturePack.id);
+        
+        // Trigger the file download - use the correct API path
+        window.location.href = texturePack.filePath;
+      } catch (error) {
+        console.error("Error during download:", error);
+      }
     }
   };
 

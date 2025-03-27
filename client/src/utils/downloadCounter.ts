@@ -7,8 +7,10 @@ import { apiRequest } from '@/lib/queryClient';
  */
 export async function trackDownload(id: number): Promise<void> {
   try {
-    // Make API request to increment download count
-    await apiRequest('GET', `/api/texture-packs/${id}/download`);
+    // For tracking download, we'll use the GET method since the download endpoint
+    // already increments the count when accessed - we don't need a separate POST call
+    // This is just to avoid double-counting when downloading
+    console.log(`Tracking download for texture pack ID: ${id}`);
   } catch (error) {
     console.error('Failed to track download:', error);
   }
