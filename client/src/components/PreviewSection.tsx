@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaChevronDown } from "react-icons/fa";
 import {
   Carousel,
   CarouselContent,
@@ -19,6 +20,14 @@ interface ImageItem {
 
 export default function PreviewSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  
+  const scrollToDownload = () => {
+    // Find the download section by scrolling to the bottom of the page
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
+  };
 
   const allImages: ImageItem[] = [
     {
@@ -67,10 +76,19 @@ export default function PreviewSection() {
             <span className="absolute -inset-1 bg-gradient-to-r from-red-500 to-red-600 blur opacity-30 rounded-lg"></span>
             <span className="relative">Preview Gallery</span>
           </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-red-500 to-red-600 mx-auto mt-4 mb-6"></div>
-          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+          <div className="h-1 w-20 bg-gradient-to-r from-red-500 to-red-600 mx-auto mt-4 mb-4"></div>
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-4">
             See how Visible Ores enhances your Minecraft experience with easy-to-spot mineral outlines
           </p>
+          
+          {/* Scroll down to download text with animation */}
+          <button 
+            onClick={scrollToDownload}
+            className="text-red-500 text-lg md:text-xl glow-text-red font-medium flex items-center justify-center mx-auto mt-2 mb-6 hover:scale-105 transition-all group"
+          >
+            Scroll Down to Download 
+            <FaChevronDown className="ml-2 animate-bounce text-red-500 group-hover:text-red-400" />
+          </button>
         </div>
 
         <div className="max-w-5xl mx-auto">
