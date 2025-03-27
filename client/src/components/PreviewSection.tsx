@@ -48,33 +48,33 @@ export default function PreviewSection() {
   ];
 
   return (
-    <section id="preview" className="py-24 futuristic-section relative overflow-hidden">
+    <section id="preview" className="py-16 md:py-24 futuristic-section relative overflow-hidden">
       {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-purple-900/20 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-red-900/20 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-red-900/20 to-transparent"></div>
       
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-1/2 h-1/2 opacity-30"
           style={{
-            background: 'radial-gradient(circle at center, rgba(236, 72, 153, 0.4) 0%, transparent 70%)',
+            background: 'radial-gradient(circle at center, rgba(255, 0, 0, 0.4) 0%, transparent 70%)',
           }}
         />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-3 relative inline-block neon-text">
-            <span className="absolute -inset-1 bg-gradient-to-r from-pink-500 to-purple-600 blur opacity-30 rounded-lg"></span>
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-3 relative inline-block neon-text">
+            <span className="absolute -inset-1 bg-gradient-to-r from-red-500 to-red-600 blur opacity-30 rounded-lg"></span>
             <span className="relative">Preview Gallery</span>
           </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-pink-500 to-purple-600 mx-auto mt-4 mb-6"></div>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            See how Visible Ores enhances your Minecraft experience
+          <div className="h-1 w-20 bg-gradient-to-r from-red-500 to-red-600 mx-auto mt-4 mb-6"></div>
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+            See how Visible Ores enhances your Minecraft experience with easy-to-spot mineral outlines
           </p>
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <div className="cosmic-card p-6 lg:p-8 backdrop-blur-md relative">
+          <div className="cosmic-card p-4 lg:p-6 backdrop-blur-md relative">
             {/* Carousel */}
             <Carousel className="w-full max-w-4xl mx-auto" 
               opts={{
@@ -93,7 +93,7 @@ export default function PreviewSection() {
                     <div className="p-1">
                       <Card className="border-none bg-transparent">
                         <CardContent className="flex items-center justify-center p-0">
-                          <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+                          <div className="relative aspect-video w-full overflow-hidden rounded-xl red-border">
                             <img 
                               src={image.src} 
                               alt={image.alt} 
@@ -101,7 +101,7 @@ export default function PreviewSection() {
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent">
                               <div className="absolute bottom-0 left-0 w-full p-4 text-left">
-                                <h3 className="text-xl font-semibold text-white">{image.title}</h3>
+                                <h3 className="text-xl font-semibold text-red-500">{image.title}</h3>
                                 <p className="text-gray-200 text-sm">{image.description}</p>
                               </div>
                             </div>
@@ -113,12 +113,12 @@ export default function PreviewSection() {
                 ))}
               </CarouselContent>
               
-              <CarouselPrevious className="left-2 bg-black/50 hover:bg-black/70 text-white border-none" />
-              <CarouselNext className="right-2 bg-black/50 hover:bg-black/70 text-white border-none" />
+              <CarouselPrevious className="left-2 bg-black/50 hover:bg-red-900/30 text-white border border-red-500/30" />
+              <CarouselNext className="right-2 bg-black/50 hover:bg-red-900/30 text-white border border-red-500/30" />
             </Carousel>
             
             {/* Thumbnails */}
-            <div className="mt-6 flex justify-center gap-2">
+            <div className="mt-6 flex justify-center gap-2 flex-wrap">
               {allImages.map((image, index) => (
                 <button
                   key={index}
@@ -133,7 +133,7 @@ export default function PreviewSection() {
                   className={`
                     w-16 h-16 rounded-md overflow-hidden transition-all
                     ${activeIndex === index 
-                      ? 'ring-2 ring-pink-500 scale-105' 
+                      ? 'ring-2 ring-red-500 scale-105' 
                       : 'opacity-70 hover:opacity-100'
                     }
                   `}

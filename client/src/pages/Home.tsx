@@ -19,7 +19,7 @@ interface TexturePack {
 }
 
 export default function Home() {
-  const previewSectionRef = useRef<HTMLDivElement>(null);
+  const downloadSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Set black background
@@ -33,9 +33,9 @@ export default function Home() {
     };
   }, []);
 
-  const scrollToPreview = () => {
-    if (previewSectionRef.current) {
-      previewSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+  const scrollToDownload = () => {
+    if (downloadSectionRef.current) {
+      downloadSectionRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -63,9 +63,25 @@ export default function Home() {
   return (
     <div className="font-sans text-gray-100 min-h-screen bg-black">
       <Navbar />
+
+      {/* Scroll Down Indicator at the very top */}
+      <div className="fixed top-0 left-0 w-full bg-black/95 backdrop-blur-lg z-50 py-3 px-4 text-center border-b-2 border-red-500/70 shadow-lg shadow-red-500/20">
+        <button 
+          onClick={scrollToDownload}
+          className="red-border px-4 py-2 rounded-md bg-black hover:bg-red-900/30 transition-all flex items-center justify-center mx-auto gap-2 font-bold"
+        >
+          <span className="text-red-500">SCROLL DOWN TO DOWNLOAD</span>
+          <FaChevronDown className="animate-bounce text-red-500" />
+        </button>
+      </div>
       
-      {/* Hero section with download button */}
-      <div className="flex flex-col items-center justify-center min-h-screen relative">
+      {/* Preview Gallery Section First */}
+      <div className="pt-24"> {/* Add padding-top to account for the fixed scroll indicator and navbar */}
+        <PreviewSection />
+      </div>
+      
+      {/* Download section */}
+      <div ref={downloadSectionRef} className="flex flex-col items-center justify-center min-h-screen relative">
         {/* Background elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute bottom-0 right-0 w-full h-full opacity-10"
@@ -95,22 +111,6 @@ export default function Home() {
         <div className="mt-2 text-gray-500 text-sm z-10">
           Please press only once - download will start automatically
         </div>
-        
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-0 right-0 flex justify-center animate-bounce">
-          <button 
-            onClick={scrollToPreview}
-            className="text-gray-400 hover:text-red-500 transition-colors"
-            aria-label="Scroll to preview section"
-          >
-            <FaChevronDown size={24} />
-          </button>
-        </div>
-      </div>
-      
-      {/* Preview section */}
-      <div ref={previewSectionRef}>
-        <PreviewSection />
       </div>
       
       <Footer />
