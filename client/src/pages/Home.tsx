@@ -64,11 +64,11 @@ export default function Home() {
     <div className="font-sans text-gray-100 min-h-screen bg-black">
       <Navbar />
 
-      {/* Scroll Down Indicator at the very top */}
-      <div className="fixed top-0 left-0 w-full bg-black/95 backdrop-blur-lg z-50 py-3 px-4 text-center border-b-2 border-red-500/70 shadow-lg shadow-red-500/20">
+      {/* Scroll Down Indicator - positioned below navbar */}
+      <div className="fixed top-[3.5rem] left-0 w-full bg-black/95 backdrop-blur-lg z-40 py-2 px-4 text-center border-b border-red-500/70 shadow-lg shadow-red-500/20">
         <button 
           onClick={scrollToDownload}
-          className="red-border px-4 py-2 rounded-md bg-black hover:bg-red-900/30 transition-all flex items-center justify-center mx-auto gap-2 font-bold"
+          className="red-border px-4 py-1 rounded-md bg-black hover:bg-red-900/30 transition-all flex items-center justify-center mx-auto gap-2 font-bold"
         >
           <span className="text-red-500">SCROLL DOWN TO DOWNLOAD</span>
           <FaChevronDown className="animate-bounce text-red-500" />
@@ -76,7 +76,7 @@ export default function Home() {
       </div>
       
       {/* Preview Gallery Section First */}
-      <div className="pt-24"> {/* Add padding-top to account for the fixed scroll indicator and navbar */}
+      <div className="pt-28"> {/* Add padding-top to account for the fixed scroll indicator and navbar */}
         <PreviewSection />
       </div>
       

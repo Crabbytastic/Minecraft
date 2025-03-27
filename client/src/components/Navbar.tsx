@@ -9,7 +9,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-black border-b border-red-600/30 sticky top-12 z-40">
+    <nav className="bg-black border-b border-red-600/30 sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
