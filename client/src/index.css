@@ -53,9 +53,8 @@
   }
   
   .futuristic-section {
-    @apply relative overflow-hidden py-16;
+    @apply relative overflow-hidden;
     background-color: #000000;
-    border-top: 1px solid rgba(255, 0, 0, 0.2);
     border-bottom: 1px solid rgba(255, 0, 0, 0.2);
   }
 
@@ -132,5 +131,35 @@
         0 0 8px rgba(255, 0, 0, 0.6),
         0 0 12px rgba(255, 0, 0, 0.4);
     }
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  @keyframes letter-float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+  
+  .animate-letter-float {
+    display: inline-block;
+    animation: letter-float 2s ease-in-out infinite;
   }
 }

@@ -57,7 +57,7 @@ export default function PreviewSection() {
   ];
 
   return (
-    <section id="preview" className="py-16 md:py-24 futuristic-section relative overflow-hidden">
+    <section id="preview" className="pt-4 pb-16 md:pb-24 futuristic-section relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-red-900/20 to-transparent"></div>
       <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-red-900/20 to-transparent"></div>
@@ -84,9 +84,31 @@ export default function PreviewSection() {
           {/* Scroll down to download text with animation */}
           <button 
             onClick={scrollToDownload}
-            className="text-red-500 text-lg md:text-xl glow-text-red font-medium flex items-center justify-center mx-auto mt-2 mb-6 hover:scale-105 transition-all group"
+            className="text-red-500 text-lg md:text-xl glow-text-red font-medium flex items-center justify-center mx-auto mt-2 mb-6 hover:scale-105 transition-all group animate-float"
           >
-            Scroll Down to Download 
+            <span className="animate-letter-float">S</span>
+            <span className="animate-letter-float" style={{ animationDelay: "50ms" }}>c</span>
+            <span className="animate-letter-float" style={{ animationDelay: "100ms" }}>r</span>
+            <span className="animate-letter-float" style={{ animationDelay: "150ms" }}>o</span>
+            <span className="animate-letter-float" style={{ animationDelay: "200ms" }}>l</span>
+            <span className="animate-letter-float" style={{ animationDelay: "250ms" }}>l</span>
+            <span className="animate-letter-float" style={{ animationDelay: "300ms" }}> </span>
+            <span className="animate-letter-float" style={{ animationDelay: "350ms" }}>D</span>
+            <span className="animate-letter-float" style={{ animationDelay: "400ms" }}>o</span>
+            <span className="animate-letter-float" style={{ animationDelay: "450ms" }}>w</span>
+            <span className="animate-letter-float" style={{ animationDelay: "500ms" }}>n</span>
+            <span className="animate-letter-float" style={{ animationDelay: "550ms" }}> </span>
+            <span className="animate-letter-float" style={{ animationDelay: "600ms" }}>t</span>
+            <span className="animate-letter-float" style={{ animationDelay: "650ms" }}>o</span>
+            <span className="animate-letter-float" style={{ animationDelay: "700ms" }}> </span>
+            <span className="animate-letter-float" style={{ animationDelay: "750ms" }}>D</span>
+            <span className="animate-letter-float" style={{ animationDelay: "800ms" }}>o</span>
+            <span className="animate-letter-float" style={{ animationDelay: "850ms" }}>w</span>
+            <span className="animate-letter-float" style={{ animationDelay: "900ms" }}>n</span>
+            <span className="animate-letter-float" style={{ animationDelay: "950ms" }}>l</span>
+            <span className="animate-letter-float" style={{ animationDelay: "1000ms" }}>o</span>
+            <span className="animate-letter-float" style={{ animationDelay: "1050ms" }}>a</span>
+            <span className="animate-letter-float" style={{ animationDelay: "1100ms" }}>d</span>
             <FaChevronDown className="ml-2 animate-bounce text-red-500 group-hover:text-red-400" />
           </button>
         </div>

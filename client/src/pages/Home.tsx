@@ -65,7 +65,7 @@ export default function Home() {
       <Navbar />
       
       {/* Preview Gallery Section First */}
-      <div className="pt-16"> {/* Add padding-top to account for navbar */}
+      <div>
         <PreviewSection />
       </div>
       
