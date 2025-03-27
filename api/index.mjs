@@ -1,9 +1,14 @@
 // Serverless API for Vercel
-const express = require('express');
-const cors = require('cors');
-const fs = require('fs');
-const path = require('path');
-const { storage } = require('../server/storage');
+import express from 'express';
+import cors from 'cors';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { storage } from '../server/storage.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Create Express app
 const app = express();
@@ -87,4 +92,4 @@ app.get('/api/texture-packs/:id/download', async (req, res) => {
 });
 
 // Export the Express API as a Vercel serverless function
-module.exports = app;
+export default app;
