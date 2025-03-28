@@ -5,19 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Visible Ores - Minecraft Bedrock Texture Pack</title>
   <meta name="description" content="Download Visible Ores, a texture pack that makes ores in Minecraft Bedrock Edition more visible with clear outlines.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'Minecraft';
-      src: url('https://cdn.jsdelivr.net/gh/South-Paw/typeface-minecraft@master/font/minecraft.woff2') format('woff2'),
-           url('https://cdn.jsdelivr.net/gh/South-Paw/typeface-minecraft@master/font/minecraft.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-
     * {
       margin: 0;
       padding: 0;
@@ -25,15 +13,16 @@
     }
 
     body {
-      font-family: 'Open Sans', sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background-color: #000;
       color: #fff;
       line-height: 1.6;
+      text-align: center;
     }
 
     .container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 0 20px;
     }
@@ -41,22 +30,17 @@
     header {
       padding: 20px 0;
       border-bottom: 2px solid #ff0000;
+      margin-bottom: 40px;
     }
 
     .logo {
-      font-family: 'Minecraft', sans-serif;
-      font-size: 28px;
+      font-size: 32px;
+      font-weight: bold;
       color: #ff0000;
       text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
     }
 
-    .hero {
-      padding: 60px 0;
-      text-align: center;
-    }
-
     h1 {
-      font-family: 'Minecraft', sans-serif;
       font-size: 48px;
       margin-bottom: 20px;
       color: #ff0000;
@@ -65,36 +49,45 @@
 
     .subtitle {
       font-size: 20px;
-      margin-bottom: 40px;
+      margin-bottom: 60px;
       color: #aaa;
     }
 
-    .preview {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
+    .feature-box {
+      background-color: #111;
+      border: 2px solid #ff0000;
+      border-radius: 8px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .feature-list {
+      text-align: left;
+      max-width: 500px;
+      margin: 0 auto 30px;
+    }
+
+    .feature-list li {
+      margin-bottom: 15px;
+      list-style-type: none;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .feature-list li:before {
+      content: "✓";
+      color: #ff0000;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .section {
       margin-bottom: 60px;
     }
 
-    .preview img {
-      max-width: 100%;
-      height: auto;
-      border: 2px solid #ff0000;
-      border-radius: 8px;
-    }
-
-    .download-section {
-      padding: 60px 0;
-      text-align: center;
-      background-color: #111;
-      border-top: 2px solid #ff0000;
-      border-bottom: 2px solid #ff0000;
-    }
-
     h2 {
-      font-family: 'Minecraft', sans-serif;
-      font-size: 36px;
+      font-size: 32px;
       margin-bottom: 30px;
       color: #ff0000;
     }
@@ -102,15 +95,14 @@
     .download-button {
       display: inline-block;
       padding: 16px 32px;
-      font-family: 'Minecraft', sans-serif;
       font-size: 18px;
+      font-weight: bold;
       background-color: #ff0000;
       color: #fff;
       text-decoration: none;
       border-radius: 4px;
       transition: all 0.3s ease;
       box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     }
 
     .download-button:hover {
@@ -125,16 +117,11 @@
       color: #aaa;
     }
 
-    .discord-section {
-      padding: 60px 0;
-      text-align: center;
-    }
-
     .discord-button {
       display: inline-block;
       padding: 16px 32px;
-      font-family: 'Minecraft', sans-serif;
       font-size: 18px;
+      font-weight: bold;
       background-color: #5865F2;
       color: #fff;
       text-decoration: none;
@@ -154,6 +141,29 @@
       border-top: 2px solid #ff0000;
       color: #aaa;
       font-size: 14px;
+      margin-top: 40px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 2px;
+      background-color: #ff0000;
+      margin: 40px 0;
+    }
+
+    .scroll-animation {
+      color: #ff0000;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 40px 0;
+      text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
     }
 
     @media (max-width: 768px) {
@@ -166,6 +176,9 @@
       .subtitle {
         font-size: 18px;
       }
+      .scroll-animation {
+        font-size: 20px;
+      }
     }
   </style>
 </head>
@@ -176,33 +189,39 @@
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container">
-      <h1>Visible Ores</h1>
-      <p class="subtitle">A Minecraft Bedrock texture pack that makes ores more visible with outlines</p>
-      
-      <div class="preview">
-        <img src="https://i.imgur.com/MvVUExK.jpg" alt="Visible Ores Preview 1" width="400">
-        <img src="https://i.imgur.com/qzF4o1o.jpg" alt="Visible Ores Preview 2" width="400">
-      </div>
+  <div class="container">
+    <h1>Visible Ores</h1>
+    <p class="subtitle">A Minecraft Bedrock texture pack that makes ores more visible with outlines</p>
+    
+    <div class="feature-box">
+      <h2>Features</h2>
+      <ul class="feature-list">
+        <li>Makes all ores in Minecraft Bedrock stand out with clear outlines</li>
+        <li>Easier mining and resource gathering</li>
+        <li>No unfair advantages - just better visibility</li>
+        <li>Compatible with the latest Bedrock version</li>
+        <li>Simple installation - just tap to install</li>
+      </ul>
     </div>
-  </section>
 
-  <section class="download-section">
-    <div class="container">
+    <div class="scroll-animation">Scroll Down to Download</div>
+
+    <div class="divider"></div>
+    
+    <div class="section">
       <h2>Download Now</h2>
-      <a href="https://cdn.discordapp.com/attachments/1234143536384512021/1233082994455457843/Visible_Ores.mcpack" class="download-button">Download Texture Pack</a>
+      <a href="/api/download" class="download-button">Download Texture Pack</a>
       <p class="download-count">300+ Downloads</p>
     </div>
-  </section>
+    
+    <div class="divider"></div>
 
-  <section class="discord-section">
-    <div class="container">
+    <div class="section">
       <h2>Join Our Discord</h2>
       <p>Get support, suggest features, and chat with the community</p>
-      <a href="https://discord.gg/q8W2bgRAXV" class="discord-button">Join Discord</a>
+      <a href="https://discord.gg/q8W2bgRAXV" target="_blank" class="discord-button">Join Discord</a>
     </div>
-  </section>
+  </div>
 
   <footer>
     <div class="container">

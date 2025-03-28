@@ -4,5 +4,9 @@
   "buildCommand": "npm run build && chmod +x build-hooks.sh && ./build-hooks.sh",
   "installCommand": "npm install",
   "outputDirectory": "dist",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "routes": [
+    { "src": "/Visible Ores.mcpack", "dest": "/api/download" },
+    { "src": "/texture-pack", "dest": "/api/texture-pack" }
+  ]
 }
