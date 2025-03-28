@@ -8,16 +8,19 @@
     {
       "source": "/api/(.*)",
       "destination": "/api"
+    },
+    {
+      "source": "/Visible Ores.mcpack",
+      "destination": "/Visible Ores.mcpack"
+    },
+    {
+      "source": "/api/texture-packs/:id/download",
+      "destination": "/api/index.mjs"
     }
   ],
   "functions": {
     "api/index.mjs": {
       "includeFiles": "public/**,attached_assets/**,dist/**"
     }
-  },
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/Visible Ores.mcpack", "dest": "/Visible Ores.mcpack" },
-    { "src": "/api/texture-packs/[0-9]+/download", "dest": "/api/index.mjs" }
-  ]
+  }
 }
