@@ -1,25 +1,44 @@
-// A simple API endpoint for serving the texture pack file
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Polyfill for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default function handler(req, res) {
-  const filePath = path.join(process.cwd(), 'public', 'Visible Ores.mcpack');
-  
   try {
-    // Check if file exists
-    if (fs.existsSync(filePath)) {
-      // Set appropriate content type
-      res.setHeader('Content-Type', 'application/octet-stream');
-      res.setHeader('Content-Disposition', 'attachment; filename="Visible Ores.mcpack"');
-      
-      // Create read stream and pipe to response
-      const fileStream = fs.createReadStream(filePath);
-      fileStream.pipe(res);
-    } else {
-      res.status(404).json({ error: 'File not found' });
+    // Try multiple possible file locations
+    let filePaths = [
+      path.join(process.cwd(), 'public', 'Visible Ores.mcpack'),
+      path.join(process.cwd(), 'Visible Ores.mcpack'),
+      path.join(process.cwd(), 'attached_assets', 'Visible Ores.mcpack')
+    ];
+    
+    // Find the first path that exists
+    let filePath = filePaths.find(path => fs.existsSync(path));
+    
+    if (!filePath) {
+      return res.status(404).json({
+        error: 'Texture pack file not found'
+      });
     }
+    
+    // Get file details
+    const stat = fs.statSync(filePath);
+    
+    // Set the appropriate headers
+    res.setHeader('Content-Length', stat.size);
+    res.setHeader('Content-Type', 'application/octet-stream');
+    res.setHeader('Content-Disposition', 'attachment; filename="Visible Ores.mcpack"');
+    
+    // Stream the file
+    const readStream = fs.createReadStream(filePath);
+    readStream.pipe(res);
   } catch (error) {
     console.error('Error serving file:', error);
-    res.status(500).json({ error: 'Server error' });
+    res.status(500).json({
+      error: 'Failed to serve the texture pack file'
+    });
   }
 }

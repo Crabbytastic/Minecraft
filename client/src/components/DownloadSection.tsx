@@ -39,6 +39,7 @@ export default function DownloadSection() {
 
   // Handle download
   const handleDownload = (id: number) => {
+    // Use the downloadMutation to increment the count and trigger the download
     downloadMutation.mutate(id);
   };
 

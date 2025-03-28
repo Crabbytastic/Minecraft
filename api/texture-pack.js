@@ -1,4 +1,5 @@
-// API endpoint for serving texture pack metadata
+// This is a serverless function for Vercel
+
 export default function handler(req, res) {
   const texturePack = {
     name: "Visible Ores Texture Pack",
@@ -6,7 +7,7 @@ export default function handler(req, res) {
     compatibility: "Minecraft Bedrock 1.20+",
     releaseDate: "March 26, 2025",
     fileSize: "698 KB",
-    downloadCount: 300,
+    downloadCount: "300+",
     description: "A texture pack that makes ores in Minecraft Bedrock more visible with outlines."
   };
   
