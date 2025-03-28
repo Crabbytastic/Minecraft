@@ -12,7 +12,7 @@
   ],
   "functions": {
     "api/index.mjs": {
-      "includeFiles": ["public/**", "attached_assets/**", "dist/**"]
+      "includeFiles": "public/**,attached_assets/**,dist/**"
     }
   },
   "routes": [
