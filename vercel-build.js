@@ -12,26 +12,51 @@ if (!fs.existsSync(targetDir)) {
   fs.mkdirSync(targetDir, { recursive: true });
 }
 
-// Copy the texture pack file to the build output
-const sourceFile = path.join(__dirname, 'public', 'Visible Ores.mcpack');
-const targetFile = path.join(targetDir, 'Visible Ores.mcpack');
+// Create the public directory inside dist if it doesn't exist
+const publicDir = path.join(targetDir, 'public');
+if (!fs.existsSync(publicDir)) {
+  fs.mkdirSync(publicDir, { recursive: true });
+}
 
-try {
+// Copy the texture pack file to the build output (both dist/ and dist/public/)
+const sourceFiles = [
+  path.join(__dirname, 'public', 'Visible Ores.mcpack'),
+  path.join(__dirname, 'attached_assets', 'Visible Ores.mcpack')
+];
+
+const targetFiles = [
+  path.join(targetDir, 'Visible Ores.mcpack'),
+  path.join(publicDir, 'Visible Ores.mcpack')
+];
+
+// Try to copy from each possible source to each possible target
+let copySuccess = false;
+for (const sourceFile of sourceFiles) {
   if (fs.existsSync(sourceFile)) {
-    fs.copyFileSync(sourceFile, targetFile);
-    console.log('Successfully copied texture pack file to build output');
-  } else {
-    console.error('Source texture pack file not found at:', sourceFile);
-    
-    // Try alternate location
-    const altSourceFile = path.join(__dirname, 'attached_assets', 'Visible Ores.mcpack');
-    if (fs.existsSync(altSourceFile)) {
-      fs.copyFileSync(altSourceFile, targetFile);
-      console.log('Successfully copied texture pack file from alternate location to build output');
-    } else {
-      console.error('Texture pack file not found in either location');
+    for (const targetFile of targetFiles) {
+      try {
+        fs.copyFileSync(sourceFile, targetFile);
+        console.log(`Successfully copied texture pack file from ${sourceFile} to ${targetFile}`);
+        copySuccess = true;
+      } catch (error) {
+        console.error(`Error copying from ${sourceFile} to ${targetFile}:`, error);
+      }
     }
   }
+}
+
+if (!copySuccess) {
+  console.error('Failed to copy texture pack file from any source to any target location');
+}
+
+// Ensure the index.html is in the right place
+try {
+  const sourceHtml = path.join(__dirname, 'client', 'index.html');
+  const targetHtml = path.join(publicDir, 'index.html');
+  if (fs.existsSync(sourceHtml)) {
+    fs.copyFileSync(sourceHtml, targetHtml);
+    console.log('Successfully copied index.html to build output');
+  }
 } catch (error) {
-  console.error('Error copying texture pack file:', error);
+  console.error('Error copying index.html:', error);
 }

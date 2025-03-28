@@ -105,11 +105,12 @@ app.get('/api/texture-packs/:id/download', async (req, res) => {
     if (!filepath) {
       console.error('File not found in any of the expected locations:', possiblePaths);
       
-      // Fallback to direct URL redirect
-      const redirectUrl = 'https://raw.githubusercontent.com/USERNAME/visible-ores/main/Visible%20Ores.mcpack';
-      
-      console.log('Redirecting to:', redirectUrl);
-      return res.redirect(302, redirectUrl);
+      // Send a clear error message instead of redirecting to a non-existent URL
+      console.error('Texture pack file not found in any location');
+      return res.status(404).json({ 
+        error: 'Texture pack file not found',
+        message: 'The texture pack file could not be located on the server. Please contact the site administrator.'
+      });
     }
     
     // Set appropriate headers for download

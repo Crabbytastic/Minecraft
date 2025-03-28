@@ -4,19 +4,11 @@
   "buildCommand": "npm run build && chmod +x build-hooks.sh && ./build-hooks.sh",
   "installCommand": "npm install",
   "outputDirectory": "dist",
+  "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api"
-    },
-    {
-      "source": "/Visible Ores.mcpack",
-      "destination": "/Visible Ores.mcpack"
-    },
-    {
-      "source": "/api/texture-packs/:id/download",
-      "destination": "/api/index.mjs"
-    }
+    { "source": "/api/(.*)", "destination": "/api/index.mjs" },
+    { "source": "/Visible Ores.mcpack", "destination": "/public/Visible Ores.mcpack" },
+    { "source": "/(.*)", "destination": "/public/$1" }
   ],
   "functions": {
     "api/index.mjs": {
