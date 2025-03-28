@@ -49,13 +49,28 @@ if (!copySuccess) {
   console.error('Failed to copy texture pack file from any source to any target location');
 }
 
-// Ensure the index.html is in the right place
+// Ensure the index.html is in the right place - try multiple sources
 try {
-  const sourceHtml = path.join(__dirname, 'client', 'index.html');
-  const targetHtml = path.join(publicDir, 'index.html');
-  if (fs.existsSync(sourceHtml)) {
-    fs.copyFileSync(sourceHtml, targetHtml);
-    console.log('Successfully copied index.html to build output');
+  // Try standalone index.html first (preferred)
+  const standaloneHtml = path.join(__dirname, 'index.html');
+  const targetDirHtml = path.join(targetDir, 'index.html');
+  const targetPublicHtml = path.join(publicDir, 'index.html');
+  
+  // Copy standalone HTML if it exists
+  if (fs.existsSync(standaloneHtml)) {
+    fs.copyFileSync(standaloneHtml, targetDirHtml);
+    fs.copyFileSync(standaloneHtml, targetPublicHtml);
+    console.log('Successfully copied standalone index.html to build output');
+  } else {
+    // Fall back to client/index.html
+    const sourceHtml = path.join(__dirname, 'client', 'index.html');
+    if (fs.existsSync(sourceHtml)) {
+      fs.copyFileSync(sourceHtml, targetDirHtml);
+      fs.copyFileSync(sourceHtml, targetPublicHtml);
+      console.log('Successfully copied client index.html to build output');
+    } else {
+      console.error('No index.html file found');
+    }
   }
 } catch (error) {
   console.error('Error copying index.html:', error);

@@ -27,11 +27,15 @@ cp attached_assets/*.png .vercel/output/static/attached_assets/ 2>/dev/null || e
 mkdir -p dist/public/attached_assets/
 cp -r attached_assets/* dist/public/attached_assets/ 2>/dev/null || echo "Could not copy attached_assets to dist/public/attached_assets/"
 
-# Ensure the client index.html is in the root of dist/public
+# Copy both the client index.html and root index.html to all potential locations
 cp client/index.html dist/public/ 2>/dev/null || echo "Could not copy client/index.html to dist/public/"
-
-# Also copy to static output for direct access
 cp client/index.html .vercel/output/static/ 2>/dev/null || echo "Could not copy client/index.html to .vercel/output/static/"
+
+# Also use the standalone index.html from the project root
+cp index.html dist/public/ 2>/dev/null || echo "Could not copy root index.html to dist/public/"
+cp index.html dist/ 2>/dev/null || echo "Could not copy root index.html to dist/"
+cp index.html .vercel/output/static/ 2>/dev/null || echo "Could not copy root index.html to .vercel/output/static/"
+cp index.html .vercel/output/ 2>/dev/null || echo "Could not copy root index.html to .vercel/output/"
 
 echo "Asset preparation complete"
 
