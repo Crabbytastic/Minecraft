@@ -52,10 +52,29 @@ export default function Home() {
         // Track the download
         await trackDownload(texturePack.id);
         
-        // Trigger the file download - use the correct API path
-        window.location.href = texturePack.filePath;
+        // Get the base URL dynamically
+        const baseUrl = window.location.origin;
+        
+        // Construct the full download URL
+        const downloadUrl = texturePack.filePath.startsWith('http') 
+          ? texturePack.filePath 
+          : `${baseUrl}${texturePack.filePath}`;
+        
+        console.log('Starting download from:', downloadUrl);
+        
+        // Create a hidden anchor element for better download handling
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.setAttribute('download', 'Visible Ores.mcpack');
+        link.setAttribute('target', '_blank');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       } catch (error) {
         console.error("Error during download:", error);
+        
+        // Fallback method if the above fails
+        window.open(texturePack.filePath, '_blank');
       }
     }
   };

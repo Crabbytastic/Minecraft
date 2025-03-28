@@ -73,18 +73,52 @@ app.get('/api/texture-packs/:id/download', async (req, res) => {
     
     // Serve the texture pack file
     const filename = 'Visible Ores.mcpack';
-    const filepath = path.join(__dirname, '../public', filename);
     
-    if (!fs.existsSync(filepath)) {
-      return res.status(404).json({ error: 'File not found' });
+    // Try multiple possible paths for the file
+    const possiblePaths = [
+      path.join(__dirname, filename),
+      path.join(__dirname, '../public', filename),
+      path.join(__dirname, '../attached_assets', filename),
+      path.join(process.cwd(), 'public', filename),
+      path.join(process.cwd(), 'attached_assets', filename),
+      path.join(process.cwd(), filename),
+      path.join(process.cwd(), 'dist', filename)
+    ];
+    
+    // Log all paths we're checking
+    console.log('Searching for texture pack in these locations:', possiblePaths);
+    
+    // Find the first path that exists
+    let filepath = null;
+    for (const testPath of possiblePaths) {
+      try {
+        if (fs.existsSync(testPath)) {
+          filepath = testPath;
+          console.log('Found texture pack at:', filepath);
+          break;
+        }
+      } catch (err) {
+        console.error(`Error checking path ${testPath}:`, err);
+      }
+    }
+    
+    if (!filepath) {
+      console.error('File not found in any of the expected locations:', possiblePaths);
+      
+      // Fallback to direct URL redirect
+      const redirectUrl = 'https://raw.githubusercontent.com/USERNAME/visible-ores/main/Visible%20Ores.mcpack';
+      
+      console.log('Redirecting to:', redirectUrl);
+      return res.redirect(302, redirectUrl);
     }
     
     // Set appropriate headers for download
     res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
     res.setHeader('Content-Type', 'application/octet-stream');
     
-    // Send the file
-    res.sendFile(filepath);
+    // Send the file as a stream to avoid memory issues with large files
+    const fileStream = fs.createReadStream(filepath);
+    fileStream.pipe(res);
   } catch (error) {
     console.error('Error serving texture pack:', error);
     res.status(500).json({ error: 'Failed to serve texture pack' });

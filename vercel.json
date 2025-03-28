@@ -1,9 +1,9 @@
 
 {
   "version": 2,
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build && chmod +x build-hooks.sh && ./build-hooks.sh",
   "installCommand": "npm install",
-  "outputDirectory": "dist/public",
+  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -12,7 +12,12 @@
   ],
   "functions": {
     "api/index.mjs": {
-      "includeFiles": "public/**"
+      "includeFiles": ["public/**", "attached_assets/**", "dist/**"]
     }
-  }
+  },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/Visible Ores.mcpack", "dest": "/Visible Ores.mcpack" },
+    { "src": "/api/texture-packs/[0-9]+/download", "dest": "/api/index.mjs" }
+  ]
 }

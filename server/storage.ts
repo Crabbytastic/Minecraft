@@ -40,7 +40,7 @@ export class MemStorage implements IStorage {
         compatibility: "Bedrock 1.20.x",
         releaseDate: "March 25, 2025",
         fileSize: "4.3 MB",
-        filePath: "/api/texture-packs/1/download"
+        filePath: "/Visible Ores.mcpack" // Direct file path as fallback
       },
       {
         name: "Visible Ores Texture Pack",
